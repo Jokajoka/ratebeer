@@ -1,4 +1,4 @@
-<%= form_with(model: beer, local: true) do |form| %>
+  <%= form_with(model: beer, local: true) do |form| %>
   <% if beer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(beer.errors.count, "error") %> prohibited this beer from being saved:</h2>
@@ -21,11 +21,13 @@
     <%= form.text_field :style %>
   </div>
 
-  <div class="field">
-    <%= form.label :brewery_id %>
-    <%= form.number_field :brewery_id %>
-  </div>
-
+  <p>
+  <%= form.label :brewery %>
+  <%= form_for(@beer) do |f| %>
+    <%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name) %>
+  <% end %>
+  </p>
+  
   <div class="actions">
     <%= form.submit %>
   </div>
