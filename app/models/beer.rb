@@ -16,4 +16,9 @@ class Beer < ApplicationRecord
 			return 0.0
 		end
 	end
+
+	def to_s
+		return self.name + ", by " + self.brewery.name
+	end
+
 end
